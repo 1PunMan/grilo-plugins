@@ -182,17 +182,17 @@ function fetch_game_cb(results)
       media.rating = tonumber(game.Rating.xml) / 2
     end
 
-    if game.Developer then print("Game Developer") end
+    if game.Developer then print("Game Developer",game.Developer.xml) end
     if game.Developer then
       -- FIXME media.developer = game.Developer.xml
     end
 
-    if game.Publisher then print("Game Publisher") end
+    if game.Publisher then print("Game Publisher", game.Publisher.xml) end
     if game.Publisher then
       -- FIXME media.publisher = game.Publisher.xml
     end
 
-    if game.Players then print("Game Players") end
+    if game.Players then print("Game Players", tonumber(game.Players.xml)) end
     if game.Players then
       -- FIXME media.players = tonumber(game.Players.xml)
     end
