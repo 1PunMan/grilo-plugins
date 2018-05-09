@@ -102,8 +102,8 @@ end
 function fetch_results_cb(results)
   local req = grl.get_media_keys()
   local id = get_id(results, req.title)
-  print("Printing id")
-  print(id)
+  print("Printing id & title")
+  print(id, title)
 
   if id then
     local url = THEGAMESDB_BASE_API_URL ..  'GetGame.php?id=' .. id
