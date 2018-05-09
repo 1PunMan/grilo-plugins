@@ -78,6 +78,8 @@ end
 
 function get_id(results, title)
   print("<----------------Inititated---------------->")
+  print("Printing title")
+  print(title)
   if not results then return nil end
   local results_table = grl.lua.xml.string_to_table(results)
   if not results_table or
@@ -103,7 +105,7 @@ function fetch_results_cb(results)
   local req = grl.get_media_keys()
   local id = get_id(results, req.title)
   print("Printing id & title")
-  print(id, title)
+  print(id)
 
   if id then
     local url = THEGAMESDB_BASE_API_URL ..  'GetGame.php?id=' .. id
