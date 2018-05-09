@@ -68,6 +68,7 @@ function grl_source_resolve()
      url = url .. "&platform=" .. grl.encode(platform_name)
     end
   end
+  print(url)
   grl.debug('Fetching URL ' .. url .. ' for game ' .. req.title .. ' (' .. tostring(req.mime_type) ..')')
   grl.fetch(url, fetch_results_cb, netopts)
 end
