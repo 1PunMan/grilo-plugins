@@ -176,7 +176,7 @@ function fetch_game_cb(results)
       media.genre = {}
       for index, genre in pairs(game.Genres) do
         table.insert(media.genre, genre.xml)
-        print(genre.xml)
+        print(index, genre.xml)
       end
     end
 
