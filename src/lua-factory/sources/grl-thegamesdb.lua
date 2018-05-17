@@ -138,6 +138,19 @@ function get_game(results)
   return nil, nil
 end
 
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
+
 function fetch_game_cb(results)
   local base_url, game = get_game(results)
 
@@ -145,6 +158,8 @@ function fetch_game_cb(results)
     grl.callback()
   else
     local media = {}
+
+    print(dump(game))
 
     if game.Images and
        game.Images.boxart then
