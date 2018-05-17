@@ -195,7 +195,7 @@ function fetch_game_cb(results)
       end
     end]]
 
-    if game.Genres.genre then
+    if not game.Genres.genre.xml then
     	media.genre = {}
     	for index, genre in pairs(game.Genres.genre) do
     		table.insert(media.genre, genre.xml)
