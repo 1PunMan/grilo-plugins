@@ -187,17 +187,15 @@ function fetch_game_cb(results)
     end
 
     if game.Genres then print("Game genre change hua kya") end
-    if game.Genres then
+    if game.Genres.genre then
       media.genre = {}
       for index, genre in pairs(game.Genres) do
         table.insert(media.genre, genre.xml)
         print(index, genre.xml)
       end
-    end
-
-    --[[else if not game.Genres.genre.xml then
+    elseif not game.Genres.genre.xml then
     	table.insert(media.genre, genre.xml)
-    end]]
+    end
 
     for index, genre in pairs(media.genre) do
     	print(genre)
