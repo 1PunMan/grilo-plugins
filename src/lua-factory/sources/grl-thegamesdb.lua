@@ -159,8 +159,6 @@ function fetch_game_cb(results)
   else
     local media = {}
 
-    print(dump(game))
-
     if game.Images and
        game.Images.boxart then
       -- Handle having a single boxart image
@@ -191,7 +189,6 @@ function fetch_game_cb(results)
       media.genre = {}
       for index, genre in pairs(game.Genres) do
         table.insert(media.genre, genre.xml)
-        print(index, genre.xml)
       end
     elseif not game.Genres.genre.xml then
       media.genre = {}
@@ -227,7 +224,9 @@ function fetch_game_cb(results)
 
     if game['Co-op'] then
       if game['Co-op'].xml == 'Yes' then
-        -- FIXME media.coop = true
+        media.cooperative = true
+      else
+        media.cooperative = false
       end
     end
 
