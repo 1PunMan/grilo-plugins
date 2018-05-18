@@ -186,8 +186,8 @@ function fetch_game_cb(results)
       media.publication_date = string.format('%04d-%02d-%02d', year, month, day)
     end
 
-    if game.Genres then print("Game genre change hua kya") end
-    if game.Genres.genre then
+    if game.Genres then print("Game genre") end
+    if game.Genres.genre.xml then
       media.genre = {}
       for index, genre in pairs(game.Genres) do
         table.insert(media.genre, genre.xml)
