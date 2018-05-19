@@ -207,6 +207,45 @@ test_resolve_thumbnails_found (void)
   g_object_unref (options);
 }
 
+static void
+test_resolve_genre_found (void)
+{
+  GError *error = NULL;
+  GList *keys;
+  GrlMedia *media;
+  GrlOperationOptions *options;
+  GrlRegistry *registry;
+  GrlSource *source;
+  guint expected_n_genres;
+
+  registry = grl_registry_get_default ();
+  source = grl_registry_lookup_source (registry, THEGAMESDB);
+  g_assert (source);
+
+  media = build_game_media ("Shatterhand");
+  grl_media_set_mime (media, "application/x-nes-rom");
+
+  keys = grl_metadata_key_list_new (GRL_METADATA_KEY_GENRE,
+                                    NULL);
+
+  options = grl_operation_options_new (NULL);
+  grl_operation_options_set_resolution_flags (options, GRL_RESOLVE_FULL);
+
+  grl_source_resolve_sync (source, media, keys, options, &error);
+
+  g_assert_no_error (error);
+
+  /* We should get two genres */
+  expected_n_genres = grl_data_length (GRL_DATA (media), GRL_METADATA_KEY_GENRE);
+  g_assert_cmpuint (expected_n_genres, ==, 2);
+  g_assert_cmpstr (grl_media_get_genre_nth (media, 0), ==, "Action");
+  g_assert_cmpstr (grl_media_get_genre_nth (media, 1), ==, "Platform");
+
+  g_list_free (keys);
+  g_object_unref (options);
+  g_object_unref (media);
+}
+
 int
 main(int argc, char **argv)
 {
