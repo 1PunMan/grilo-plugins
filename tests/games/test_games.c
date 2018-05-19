@@ -217,7 +217,7 @@ test_resolve_genre_found (GrlSource *source,
 {
   GError *error = NULL;
   GrlMedia *media;
-  guint expected_n_genres
+  guint expected_n_genres;
 
   media = build_game_media (title);
   grl_media_set_mime (media, mime);
