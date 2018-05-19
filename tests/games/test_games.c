@@ -135,7 +135,7 @@ test_resolve_thumbnail_found (GrlSource *source,
 
   /* We should get a thumbnail */
   expected_n_thumbnails = grl_data_length (GRL_DATA (media), GRL_METADATA_KEY_THUMBNAIL);
-  g_assert_cmpuint (expected_n_thumbnails, ==, 0);
+  g_assert_cmpuint (expected_n_thumbnails, >, 0);
   g_assert_cmpstr (grl_media_get_thumbnail_nth (media, expected_thumbnail_index),
                    ==,
                    expected_thumbnail_url);
