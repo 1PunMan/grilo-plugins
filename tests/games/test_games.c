@@ -253,12 +253,12 @@ test_resolve_genres_found (void)
   options = grl_operation_options_new (NULL);
   grl_operation_options_set_resolution_flags (options, GRL_RESOLVE_FULL);
 
-  test_resolve_thumbnail_found (source, keys, options,
+  test_resolve_genre_found (source, keys, options,
                                 "Astérix",
                                 "application/x-gamegear-rom",
                                 1);
 
-  test_resolve_thumbnail_found (source, keys, options,
+  test_resolve_genre_found (source, keys, options,
                                 "Shatterhand",
                                 "application/x-nes-rom",
                                 2);
