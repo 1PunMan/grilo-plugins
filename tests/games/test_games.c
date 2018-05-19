@@ -237,9 +237,11 @@ test_resolve_genre_found (void)
 
   /* We should get two genres */
   expected_n_genres = grl_data_length (GRL_DATA (media), GRL_METADATA_KEY_GENRE);
+  printf("KITNE??? %u",expected_n_genres);
   g_assert_cmpuint (expected_n_genres, ==, 2);
   g_assert_cmpstr (grl_media_get_genre_nth (media, 0), ==, "Action");
   g_assert_cmpstr (grl_media_get_genre_nth (media, 1), ==, "Platform");
+  printf("GENRES YE HAINNN %s %s",grl_media_get_genre_nth (media, 0), grl_media_get_genre_nth (media, 1));
 
   g_list_free (keys);
   g_object_unref (options);
