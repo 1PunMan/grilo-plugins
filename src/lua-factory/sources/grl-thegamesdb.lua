@@ -154,6 +154,8 @@ end
 function fetch_game_cb(results)
   local base_url, game = get_game(results)
 
+  print(dump(results))
+
   if not game then
     grl.callback()
   else
@@ -174,45 +176,38 @@ function fetch_game_cb(results)
       end
     end
 
-    if game.Overview then print("Game Overview") end
     if game.Overview then media.description = game.Overview.xml end
     if game.id then media.external_url = 'http://thegamesdb.net/game/' .. game.id.xml .. '/' end
 
-    if game.ReleaseDate then print("Game Release date") end
     if game.ReleaseDate then
       local month, day, year = game.ReleaseDate.xml:match('(%d+)/(%d+)/(%d+)')
       media.publication_date = string.format('%04d-%02d-%02d', year, month, day)
     end
 
-    if game.Genres then print("Game genre") end
     if game.Genres then
       media.genre = {}
-      for index, genre in pairs(game.Genres) do
-        table.insert(media.genre, genre.xml)
+      if game.Genres.genre.xml then
+        table.insert(media.genre, game.Genres.genre.xml)
+      else
+        for index, genre in pairs(game.Genres.genre) do
+          table.insert(media.genre, genre.xml)
+        end
       end
     end
 
-    for index, genre in pairs(media.genre) do
-    	print(genre)
-    end
-
-    if game.Rating then print("Game Rating") end
     if game.Rating then
       -- from /10 to /5
       media.rating = tonumber(game.Rating.xml) / 2
     end
 
-    if game.Developer then print("Game Developer",game.Developer.xml) end
     if game.Developer then
        media.developer = game.Developer.xml
     end
 
-    if game.Publisher then print("Game Publisher", game.Publisher.xml) end
     if game.Publisher then
        media.publisher = game.Publisher.xml
     end
 
-    if game.Players then print("Game Players", tonumber(game.Players.xml)) end
     if game.Players then
       -- FIXME media.players = tonumber(game.Players.xml)
     end
